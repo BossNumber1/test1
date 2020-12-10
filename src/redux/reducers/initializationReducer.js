@@ -1,10 +1,11 @@
-import { LOGIN, PASS, EMAIL, AUTH } from "../types";
+import { LOGIN, PASS, EMAIL, AUTH, CITY } from "../types";
 
 const initialState = {
     auth: false,
     login: "",
     pass: "",
     email: "",
+    city: "",
 };
 
 export const initializationReducer = (state = initialState, action) => {
@@ -28,6 +29,11 @@ export const initializationReducer = (state = initialState, action) => {
             return {
                 ...state,
                 email: action.payload,
+            };
+        case CITY:
+            return {
+                ...state,
+                city: action.payload,
             };
         default:
             return state;

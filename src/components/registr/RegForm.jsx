@@ -5,13 +5,22 @@ import {
     createLogin,
     createPass,
     createEmail,
+    createCity,
 } from "../../redux/actions";
 import { Redirect } from "react-router-dom";
 
-function RegForm({ auth, createAuth, createLogin, createPass, createEmail }) {
+function RegForm({
+    auth,
+    createAuth,
+    createLogin,
+    createPass,
+    createEmail,
+    createCity,
+}) {
     const [name, setName] = React.useState("");
     const [password, setPassword] = React.useState("");
     const [emailLocal, setEmail] = React.useState("");
+    const [city, setCity] = React.useState("");
     const [warning, setWarning] = React.useState("");
 
     const submitHandler = (e) => {
@@ -20,7 +29,8 @@ function RegForm({ auth, createAuth, createLogin, createPass, createEmail }) {
         if (
             name.length === 0 ||
             password.length === 0 ||
-            emailLocal.length === 0
+            emailLocal.length === 0 ||
+            city.length === 0
         ) {
             setWarning("Стоит заполнить все поля");
         } else {
@@ -28,15 +38,18 @@ function RegForm({ auth, createAuth, createLogin, createPass, createEmail }) {
             createLogin(name);
             createPass(password);
             createEmail(emailLocal);
+            createCity(city);
 
             localStorage.setItem("name", name);
             localStorage.setItem("password", password);
             localStorage.setItem("email", emailLocal);
+            localStorage.setItem("city", city);
 
             setName("");
             setPassword("");
             setEmail("");
             setWarning("");
+            setCity("");
         }
     };
 
@@ -48,6 +61,8 @@ function RegForm({ auth, createAuth, createLogin, createPass, createEmail }) {
             setName(e.target.value);
         } else if (n === "password") {
             setPassword(e.target.value);
+        } else if (n === "city") {
+            setCity(e.target.value);
         } else {
             setEmail(e.target.value);
         }
@@ -108,7 +123,12 @@ function RegForm({ auth, createAuth, createLogin, createPass, createEmail }) {
                     <div className="input mb-3">
                         <label for="city">YOUR CITY</label>
                         <div className="input-group">
-                            <select className="form-control" id="city">
+                            <select
+                                name="city"
+                                className="form-control"
+                                id="city"
+                                onChange={changeInputHandler}
+                            >
                                 <option>London</option>
                                 <option>London</option>
                                 <option>London</option>
@@ -149,6 +169,7 @@ const mapDispatchToProps = {
     createLogin,
     createPass,
     createEmail,
+    createCity,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(RegForm);

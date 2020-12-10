@@ -1,4 +1,4 @@
-import { LOGIN, PASS, EMAIL, AUTH } from "./types";
+import { LOGIN, PASS, EMAIL, AUTH, CITY } from "./types";
 
 export function createLogin(login) {
     return {
@@ -25,5 +25,12 @@ export function createAuth(auth) {
     return {
         type: AUTH,
         payload: auth,
+    };
+}
+
+export function createCity(city) {
+    return {
+        type: CITY,
+        payload: city,
     };
 }
