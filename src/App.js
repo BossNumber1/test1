@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import LoginForm from "./components/login/LoginForm";
+import RegForm from "./components/registr/RegForm";
+import MyBookings from "./components/MyBookings";
+import {
+    BrowserRouter as Router,
+    Route,
+    Switch,
+    Redirect,
+} from "react-router-dom";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <Router>
+            <section className="login-register">
+                <div className="container d-flex justify-content-center">
+                    <Switch>
+                        <Route exact path="/login" component={LoginForm} />
+                        <Route
+                            exact
+                            path="/create_account"
+                            component={RegForm}
+                        />
+                        <Route
+                            exact
+                            path="/my_bookings"
+                            component={MyBookings}
+                        />
+                        <Redirect to={"/login"} />
+                    </Switch>
+                </div>
+            </section>
+        </Router>
+    );
 }
 
 export default App;
