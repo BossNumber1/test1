@@ -24,14 +24,6 @@ function RegForm({ auth, createAuth, createLogin, createPass, createEmail }) {
         ) {
             setWarning("Стоит заполнить все поля");
         } else {
-            let resultData = {
-                name,
-                password,
-                emailLocal,
-            };
-
-            console.log(resultData);
-
             createAuth(true);
             createLogin(name);
             createPass(password);
